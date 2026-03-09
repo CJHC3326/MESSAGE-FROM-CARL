@@ -1,0 +1,204 @@
+ /* Custom Animations & Styles */
+        body {
+            font-family: 'Lato', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+        }
+
+        .font-handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Envelope 3D Effects */
+        .envelope-container {
+            perspective: 1000px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope-container:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 1s ease-in-out;
+        }
+
+        /* Envelope Parts */
+        .envelope-body {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffccd5; /* Light Pink */
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            z-index: 10;
+        }
+
+        /* The Flap */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #ffb7c5; /* Darker Pink */
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out, z-index 0.1s;
+            z-index: 20;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        /* The Pocket (Front) */
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: #ffccd5;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+            z-index: 30;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* The Letter */
+        .letter {
+            position: absolute;
+            bottom: 0;
+            left: 10px;
+            width: 280px;
+            height: 190px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 15;
+            transition: transform 1s ease-in-out 0.4s, opacity 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+        }
+
+        /* Seal */
+        .seal {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: #ff69b4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            z-index: 35;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: opacity 0.3s;
+        }
+
+        /* Open State Classes */
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 5;
+            background: #ff9eb5;
+        }
+
+        .envelope.open .letter {
+            transform: translateY(-120%) scale(1.2);
+            opacity: 1;
+            z-index: 40;
+        }
+
+        .envelope.open .seal {
+            opacity: 0;
+        }
+
+        /* Typewriter Cursor */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: #ff69b4;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            opacity: 0;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        /* Heart Rain */
+        .heart-rain {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 24px;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+
+        /* Glowing Button */
+        .glow-btn {
+            box-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+            transition: all 0.3s ease;
+        }
+        .glow-btn:hover {
+            box-shadow: 0 0 20px #ff1493, 0 0 40px #ff1493;
+            transform: scale(1.1);
+        }
+
+        /* Modal */
+        .modal {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .envelope {
+                width: 260px;
+                height: 170px;
+            }
+            .letter {
+                width: 240px;
+                height: 160px;
+                left: 10px;
+            }
+        }
