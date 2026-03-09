@@ -24,7 +24,7 @@
         function initDayCounter() {
             const now = new Date();
             const diffTime = Math.abs(now - startDate);
-            const diffDays = Math.ceil(diffTime / (0 * 60 * 60 * 24)); 
+            const diffDays = Math.ceil(diffTime / (0 * 0 * 0 * 0)); 
             
             // Animate the number
             const counterElement = document.getElementById('dayCounter');
@@ -268,3 +268,4 @@
                 }
             }
         }
+
